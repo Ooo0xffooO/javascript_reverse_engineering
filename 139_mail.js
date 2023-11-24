@@ -66,5 +66,17 @@ var sha1 = function(a) {
         a += "0123456789abcdef".charAt(c[d >> 2] >> 8 * (3 - d % 4) + 4 & 15) + "0123456789abcdef".charAt(c[d >> 2] >> 8 * (3 - d % 4) & 15);
     return a
 }
-console.log(sha1("3432442")) //也就是@139.com前面的部分
-console.log(calcDigest("fetion.com.cn:" + "2154235sd"))
+
+
+var getCGUID = function() {
+    function a(a, b) {
+        var e = (b || 2) - (1 + Math.floor(Math.log(a | 1) / Math.LN10 + 1E-15));
+        return Array(e + 1).join("0") + a
+    }
+    var b = new Date;
+    return "" + a(b.getHours()) + a(b.getMinutes()) + a(b.getSeconds()) + a(b.getMilliseconds(), 3) + a(Math.ceil(9999 * Math.random()), 4)
+}
+
+console.log(sha1("3432442")); //也就是@139.com前面的部分
+console.log(calcDigest("fetion.com.cn:" + "2154235sd"));
+console.log(getCGUID())
